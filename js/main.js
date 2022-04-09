@@ -98,7 +98,7 @@ function CreateEmployeeList()
                     <td> ${employees[i].position} </td>
                     <td> ${employees[i].totalSalary} </td>
                     <td> ${employees[i].rate} </td>
-                    <td colspan="1"><button  type="button" class="btn btn-danger" onclick="deleteEmployee(${employeeManager.employee_list[i].bankAccount}) data-toggle="modal"
+                    <td colspan="1"><button  type="button" class="btn btn-danger" onclick="deleteEmployee(${employees[i].bankAccount}) data-toggle="modal"
                     data-target="#myModal">Delete</button></td>
                 </tr>
             
