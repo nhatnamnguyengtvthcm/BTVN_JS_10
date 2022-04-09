@@ -98,13 +98,12 @@ function createEmployee(){
 }
 
 
-function CreateEmployeeList()
+function CreateEmployeeList(employees)
 {
     getEleId("tableDanhSach").innerHTML = "";
     // var employees = employeeManager.employee_list;
     // console.log(employees);
     var content = "";
-    var employees = employeeManager.employee_list;
     if(employees){
         for(var i =0; i < employees.length; i ++) {
             content += `
@@ -136,7 +135,7 @@ getEleId("btnThemNV").addEventListener("click", function(){
     var employee = createEmployee();
     if (employee){
         employeeManager.addEmployee(employee);
-        CreateEmployeeList();
+        CreateEmployeeList(employeeManager.employee_list);
         setLocalStograge();
     }
    
@@ -156,7 +155,7 @@ function getLocalStograge(){
     if(employees_json){
         employeeManager.employee_list = employees_json;
         // console.log("nmss");
-        CreateEmployeeList();
+        CreateEmployeeList(employeeManager.employee_list );
     }
    
     
@@ -211,4 +210,21 @@ getEleId("btnCapNhat").addEventListener("click", function(){
     employeeManager.employee_list[employeeIndex] = employee;
     setLocalStograge();
     getLocalStograge();
+});
+
+
+
+
+getEleId("searchName").addEventListener("keyup", function(){
+    var keyWord = getEleId("searchName").value;
+    var arr = employeeManager.findEmployee(keyWord);
+    CreateEmployeeList(arr);
+});
+
+
+getEleId("btnTimNV").addEventListener("click", function(){
+    var keyWord = getEleId("searchName").value;
+    var arr = employeeManager.findEmployee(keyWord);
+    console.log(arr);
+    CreateEmployeeList(arr);
 });
